@@ -2785,6 +2785,13 @@ impl SemanticSyntaxContext for SemanticIndexBuilder<'_, '_> {
             self.semantic_syntax_errors.borrow_mut().push(error);
         }
     }
+
+    fn in_loop_context(&self) -> bool {
+        self.current_scope_info().current_loop.is_some()
+    }
+    fn is_bound_parameter(&self, _name: &str) -> bool {
+        false
+    }
 }
 
 #[derive(Copy, Clone, Debug, PartialEq)]
